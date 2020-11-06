@@ -9,8 +9,8 @@ var altitudeLabel = document.getElementById("altitude");
 var distanceLabel = document.getElementById("distanceLZ");
 
 // Initialize the UI with some values
-altitudeLabel.text = "--";
-distanceLabel.text = "--";
+//altitudeLabel.text = "--";
+//distanceLabel.text = "--";
 
 
 var lzLong;
@@ -19,7 +19,18 @@ var lzLat;
 var currentLong;
 var currentLat;
 
-geolocation.getPosition(locationSuccess, locationError);
+geolocation.getCurrentPosition(locationSuccess, locationError, {
+  timeout: 60 * 1000
+});
+
+var watchID = geolocation.watchPosition(newLocation, locationError, { timeout: 60 * 1000 });
+
+function newLocation(position) {
+    lzLat = position.coords.latitude;
+    lzLong = position.coords.longitude;
+    console.log("Latitude: " + position.coords.latitude,
+                "Longitude: " + position.coords.longitude);
+}
 
 function locationSuccess(position) {
     currentLat = position.coords.latitude;
