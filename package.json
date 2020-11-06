@@ -19,7 +19,7 @@
     "appDisplayName": "Skydive Test",
     "iconFile": "resources/icon.png",
     "wipeColor": "#ffffff",
-    "requestedPermissions": [],
+    "requestedPermissions": ["access_location", "run_background"],
     "buildTargets": [
       "atlas",
       "vulcan"

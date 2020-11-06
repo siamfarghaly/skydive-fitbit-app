@@ -1,2 +1,5 @@
 <svg>
+  <text id="altitude" x="10%" y="40%">altitude</text>
+  <text id="distanceLZ" x="10%" y="70%">distanceLZ</text>
+
 </svg>
