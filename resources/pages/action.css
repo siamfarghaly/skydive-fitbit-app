@@ -1,0 +1,17 @@
+svg {
+  viewport-fill: blue;
+}
+
+#altitude{
+  font-family: Seville-Book;
+  font-size: 50;
+  fill: #ffffff;
+  width: 100%;
+}
+
+#distanceLZ{
+  font-family: Seville-Book;
+  font-size: 50;
+  fill: #ffffff;
+  width: 100%;
+}
