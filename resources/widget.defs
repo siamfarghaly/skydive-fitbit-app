@@ -1,6 +1,10 @@
 <svg>
   <defs>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="pages/index.css" />
+    <link rel="stylesheet" href="pages/action.css" />
+    <link rel="stylesheet" href="components/button.css" />
     <link rel="import" href="/mnt/sysassets/system_widget.defs" />
+    <link rel="import" href="components/button.gui" />
   </defs>
 </svg>
