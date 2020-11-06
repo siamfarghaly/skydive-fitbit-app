@@ -42,7 +42,7 @@ function locationError(error) {
               "Message: " + error.message);
 }
 // Create a new instance of the Barometer
-var bar = new Barometer();
+var bar = new Barometer({ frequency: 1 });
 
 // Update the lavel with each reading from the sensor
 bar.onreading = () => {
