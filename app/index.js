@@ -30,9 +30,12 @@ function newLocation(position) {
     lzLong = position.coords.longitude;
     console.log("Latitude: " + position.coords.latitude,
                 "Longitude: " + position.coords.longitude);
+    distanceLabel.text = distance(currentLat,currentLong,lzLat,lzLong);
 }
 
 function locationSuccess(position) {
+  console.log(position.coords.latitude);
+  console.log(position.coords.longitude);
     currentLat = position.coords.latitude;
     currentLong = position.coords.longitude;
 }
@@ -41,13 +44,14 @@ function locationError(error) {
   console.log("Error: " + error.code,
               "Message: " + error.message);
 }
+
 // Create a new instance of the Barometer
 var bar = new Barometer({ frequency: 1 });
 
-// Update the lavel with each reading from the sensor
+// Update the values with each reading from the sensor
 bar.onreading = () => {
   altitudeLabel.text = altitudeFromPressure(bar.pressure / 100) + " ft";
-  distanceLabel.text = distance(currentLat,currentLong,lzLat,lzLong);
+
 }
 
 // Begin monitoring the sensor
