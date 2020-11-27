@@ -1,6 +1,6 @@
 <svg viewport-fill="#000000">
   <use href="#button" fill="#FFFF00" x="10%" y="100%-170" width="80%">
-    <set href="text" attributeName="text-buffer" to="START" />
+    <set href="text" attributeName="text-buffer" to="_START" />
     <set href="handle" attributeName="id" to="action-button" />
   </use>
 </svg>
