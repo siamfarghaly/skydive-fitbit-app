@@ -1,4 +1,5 @@
 import document from 'document';
+import { gettext } from "i18n";
 
 let pages = {};
 
