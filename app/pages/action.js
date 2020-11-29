@@ -12,6 +12,8 @@ var lzLong;
 var lzLat;
 var currentLong;
 var currentLat;
+var verticalSpeed;
+var lastAltitude;
 
 // Create Barometer, 1 reading per second
 var bar = new Barometer({ frequency: 1 });
@@ -26,6 +28,8 @@ export function destroy() {
   lzLat = null;
   currentLong = null;
   currentLat = null;
+  verticalSpeed = null;
+  lastAltitude = null;
 }
 
 export function init() {
@@ -33,7 +37,6 @@ export function init() {
   altitudeLabel = document.getElementById('altitude');
   distanceLabel = document.getElementById('distanceLZ');
   verSpeedLabel = document.getElementById('verSpeed');
-  verSpeedLabel.text = 0;
 
 
   watchDistanceLZ();
@@ -74,7 +77,7 @@ function watchDistanceLZ(){
       currentLong = position.coords.longitude;
       console.log("Current Latitude: " + position.coords.latitude,
                   "Current Longitude: " + position.coords.longitude);
-      distanceLabel.text = distance(currentLat,currentLong,lzLat,lzLong);
+      distanceLabel.text = distance(currentLat,currentLong,lzLat,lzLong) + " km";
   }
 }
 
@@ -83,15 +86,21 @@ function startAltimeter(){
   bar.start();
   // Update the values with each reading
   bar.onreading = () => {
-    altitudeLabel.text = Math.round(altitudeFromPressure(bar.pressure / 100)) + " ft";
+    verSpeedLabel.text = speedFromAltitude(lastAltitude,altitudeFromPressure(bar.pressure));
+    lastAltitude = altitudeFromPressure(bar.pressure);
+    altitudeLabel.text = altitudeFromPressure(bar.pressure) + " m";
   }
 }
 
+//falling speed in ft/s
+function speedFromAltitude(current, previous){
+  return (current-previous)*3.6;
+}
 
-// Converts pressure in millibars to altitude in feet
+// Converts pressure in millibars to altitude in meterss
 // https://en.wikipedia.org/wiki/Pressure_altitude
 function altitudeFromPressure(pressure) {
-  return (1 - (pressure/1013.25)**0.190284)*145366.45;
+  return Math.round(((1 - ((pressure/100)/1013.25)**0.190284)*145366.45)*0.3048);
 }
 
 
