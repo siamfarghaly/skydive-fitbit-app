@@ -7,6 +7,7 @@ import { Barometer } from "barometer";
 
 var altitudeLabel;
 var distanceLabel;
+var verSpeedLabel;
 var lzLong;
 var lzLat;
 var currentLong;
@@ -17,6 +18,7 @@ export function destroy() {
   console.log('destroy action page');
   altitudeLabel = null;
   distanceLabel = null;
+  verSpeedLabel = null;
   lzLong = null;
   lzLat = null;
   currentLong = null;
@@ -27,8 +29,12 @@ export function init() {
   console.log('init action page');
   altitudeLabel = document.getElementById('altitude');
   distanceLabel = document.getElementById('distanceLZ');
+
   watchDistanceLZ();
   startAltimeter()
+  setTimeout(function(){
+    switchPage('end', true);
+  },10000);
 };
 
 

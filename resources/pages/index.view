@@ -1,6 +1,11 @@
-<svg viewport-fill="#000000">
-  <use href="#button" fill="#FFFF00" x="10%" y="100%-170" width="80%">
-    <set href="text" attributeName="text-buffer" to="_START" />
+<svg viewport-fill="#02243F">
+  <use href="#button" x="10%" y="120" width="80%">
+    <set href="text" attributeName="text-buffer" to="START" />
     <set href="handle" attributeName="id" to="action-button" />
   </use>
+    <text x="50%" y="30%" font-family="System-Regular" fill="white" font-size="15" font-weight="normal" text-anchor="middle">
+    stel je gps-coördinaten in
+  </text>
+    <arc x="-325" y="206" width="676" height="150" fill="white"
+    arc-width="15" start-angle="90" sweep-angle="90" />
 </svg>
