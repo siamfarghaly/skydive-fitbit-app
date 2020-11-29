@@ -3,6 +3,7 @@ import { switchPage } from '../navigation';
 
 export function destroy() {
   console.log('destroy end page');
+  bar.stop();
 }
 
 export function init() {

@@ -13,6 +13,9 @@ var lzLat;
 var currentLong;
 var currentLat;
 
+// Create Barometer, 1 reading per second
+var bar = new Barometer({ frequency: 1 });
+
 
 export function destroy() {
   console.log('destroy action page');
@@ -77,15 +80,11 @@ function watchDistanceLZ(){
 
 
 function startAltimeter(){
-  // Create Barometer, 1 reading per second
-  var bar = new Barometer({ frequency: 1 });
-
+  bar.start();
   // Update the values with each reading
   bar.onreading = () => {
-    altitudeLabel.text = altitudeFromPressure(bar.pressure / 100) + " ft";
+    altitudeLabel.text = Math.round(altitudeFromPressure(bar.pressure / 100)) + " ft";
   }
-
-  bar.start();
 }
 
 
@@ -96,7 +95,7 @@ function altitudeFromPressure(pressure) {
 }
 
 
-//calculates distance between 2 coordinates
+//calculates distance between 2 coordinates in km with 2 decimals
 //https://www.geodatasource.com/developers/javascript
 function distance(lat1, lon1, lat2, lon2) {
   if ((lat1 == lat2) && (lon1 == lon2)) {
@@ -114,7 +113,8 @@ function distance(lat1, lon1, lat2, lon2) {
     dist = Math.acos(dist);
     dist = dist * 180/Math.PI;
     dist = dist * 60 * 1.1515;
-    dist = dist * 1.609344
+    dist = dist * 1.609344;
+    dist = Math.round(dist*100)/100;
     return dist;
   }
 }

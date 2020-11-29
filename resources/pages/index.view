@@ -3,7 +3,7 @@
     <set href="text" attributeName="text-buffer" to="START" />
     <set href="handle" attributeName="id" to="action-button" />
   </use>
-    <text x="50%" y="30%" font-family="System-Regular" fill="white" font-size="15" font-weight="normal" text-anchor="middle">
+    <text x="50%" y="30%" font-family="System-Regular" fill="white" font-size="15" text-anchor="middle">
     stel je gps-coördinaten in
   </text>
     <arc x="-325" y="206" width="676" height="150" fill="white"
