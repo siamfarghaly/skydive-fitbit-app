@@ -29,6 +29,9 @@ export function init() {
   console.log('init action page');
   altitudeLabel = document.getElementById('altitude');
   distanceLabel = document.getElementById('distanceLZ');
+  verSpeedLabel = document.getElementById('verSpeed');
+  verSpeedLabel.text = 0;
+
 
   watchDistanceLZ();
   startAltimeter()
