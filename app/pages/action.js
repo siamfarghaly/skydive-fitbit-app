@@ -2,17 +2,18 @@ import document from "document";
 import { switchPage } from '../navigation';
 import { geolocation } from "geolocation";
 import { Barometer } from "barometer";
+import exercise from "exercise";
 
 
 
 var altitudeLabel;
 var distanceLabel;
 var verSpeedLabel;
+var verticalSpeed;
 var lzLong;
 var lzLat;
 var currentLong;
 var currentLat;
-var verticalSpeed;
 var lastAltitude;
 
 // Create Barometer, 1 reading per second
@@ -24,11 +25,11 @@ export function destroy() {
   altitudeLabel = null;
   distanceLabel = null;
   verSpeedLabel = null;
+  verticalSpeed = null;
   lzLong = null;
   lzLat = null;
   currentLong = null;
   currentLat = null;
-  verticalSpeed = null;
   lastAltitude = null;
 }
 
@@ -38,10 +39,11 @@ export function init() {
   distanceLabel = document.getElementById('distanceLZ');
   verSpeedLabel = document.getElementById('verSpeed');
 
-
   watchDistanceLZ();
-  startAltimeter()
+  startAltimeter();
+  exercise.start("golf", { gps: true });
   setTimeout(function(){
+    exercise.stop();
     switchPage('end', true);
   },10000);
 };
@@ -77,7 +79,7 @@ function watchDistanceLZ(){
       currentLong = position.coords.longitude;
       console.log("Current Latitude: " + position.coords.latitude,
                   "Current Longitude: " + position.coords.longitude);
-      distanceLabel.text = distance(currentLat,currentLong,lzLat,lzLong) + " km";
+      distanceLabel.text = distance(currentLat,currentLong,lzLat,lzLong);
   }
 }
 
@@ -86,9 +88,21 @@ function startAltimeter(){
   bar.start();
   // Update the values with each reading
   bar.onreading = () => {
-    verSpeedLabel.text = speedFromAltitude(lastAltitude,altitudeFromPressure(bar.pressure));
+    verticalSpeed = speedFromAltitude(lastAltitude,altitudeFromPressure(bar.pressure));
     lastAltitude = altitudeFromPressure(bar.pressure);
-    altitudeLabel.text = altitudeFromPressure(bar.pressure) + " m";
+    pickLayout(verticalSpeed);
+    altitudeLabel.text = lastAltitude;
+    verSpeedLabel.text = verticalSpeed
+  }
+}
+
+function pickLayout(fallingSpeed){
+  if (fallingSpeed >= 80*0.911344415){
+    verSpeedLabel.style.display = "inline";
+    distanceLabel.style.display = "none";
+  } else{
+    verSpeedLabel.style.display = "none";
+    distanceLabel.style.display = "inline";
   }
 }
 
@@ -97,10 +111,10 @@ function speedFromAltitude(current, previous){
   return (current-previous)*3.6;
 }
 
-// Converts pressure in millibars to altitude in meterss
+// Converts pressure in millibars to altitude in ft
 // https://en.wikipedia.org/wiki/Pressure_altitude
 function altitudeFromPressure(pressure) {
-  return Math.round(((1 - ((pressure/100)/1013.25)**0.190284)*145366.45)*0.3048);
+  return Math.round((1 - ((pressure/100)/1013.25)**0.190284)*145366.45);
 }
 
 

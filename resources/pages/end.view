@@ -1,3 +1,13 @@
 <svg>
-  <text> einde </text>
+
+ <text x="50%" y="45%" font-family="System-Regular" fill="white" font-size="50" font-weight="bold" text-anchor="middle">
+  EINDE
+ </text>
+
+ <text x="50%" y="52%" font-family="System-Regular" fill="white" font-size="20" font-weight="bold" text-anchor="middle">
+  je bent veilig geland!
+ </text>
+
+<arc x="-300" y="105" width="650" height="280" fill="white" arc-width="20" start-angle="90" sweep-angle="90" />
+
 </svg>

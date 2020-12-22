@@ -1,9 +1,9 @@
 <svg>
-  <text class="altitude" x="50%" y="15%+15" font-family="System-Regular" fill="white" font-size="30" font-weight="bold" text-anchor="middle">
+  <text x="50%" y="15%+15" font-family="System-Regular" fill="white" font-size="30" font-weight="bold" text-anchor="middle">
     ALTITUDE
   </text>
 
-  <text class="altitude" id="altitude" x="50%" y="30%+15" font-family="System-Regular" fill="white" font-size="50" font-weight="bold" text-anchor="middle">
+  <text id="altitude" x="50%" y="30%+15" font-family="System-Regular" fill="white" font-size="50" font-weight="bold" text-anchor="middle">
     altitude
   </text>
 
@@ -12,17 +12,17 @@
   <arc x="1" y="160" width="340" height="150" fill="white"
     arc-width="5" start-angle="-90" sweep-angle="90" />
 
-  <text class="distanceLZ" x="50%" y="65%+15" font-family="System-Regular" fill="white" font-size="30" font-weight="bold" text-anchor="middle">
+  <text id="distanceValue" x="50%" y="65%+15" font-family="System-Regular" fill="white" font-size="30" font-weight="bold" text-anchor="middle">
     DISTANCE TO LZ
   </text>
-  <text class="distanceLZ" id="distanceLZ" x="50%" y="80%+25" font-family="System-Regular" fill="white" font-size="50" font-weight="bold" text-anchor="middle">
+  <text id="distanceLZ" x="50%" y="80%+25" font-family="System-Regular" fill="white" font-size="50" font-weight="bold" text-anchor="middle">
   distance to LZ
   </text>
 
-  <text class="verSpeed" x="50%" y="65%+15" font-family="System-Regular" fill="white" font-size="30" font-weight="bold" text-anchor="middle">
+  <text id="speedValue" x="50%" y="65%+15" font-family="System-Regular" fill="white" font-size="30" font-weight="bold" text-anchor="middle">
     VERTICAL SPEED
   </text>
-  <text class="verSpeed" id="verSpeed" x="50%" y="80%+25" font-family="System-Regular" fill="white" font-size="50" font-weight="bold" text-anchor="middle">
+  <text id="verSpeed" x="50%" y="80%+25" font-family="System-Regular" fill="white" font-size="50" font-weight="bold" text-anchor="middle">
   verticalSpeed
   </text>
 </svg>
