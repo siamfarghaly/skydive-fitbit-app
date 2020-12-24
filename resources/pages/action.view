@@ -1,16 +1,20 @@
 <svg>
-  <text x="50%" y="15%+15" font-family="System-Regular" fill="white" font-size="30" font-weight="bold" text-anchor="middle">
-    ALTITUDE
-  </text>
 
-  <text id="altitude" x="50%" y="30%+15" font-family="System-Regular" fill="white" font-size="50" font-weight="bold" text-anchor="middle">
-    altitude
-  </text>
+<section height="120" width="250">
+    <rect id="safeColor"  x="0" y="0" width="340" height="170"></rect>
+    <text x="165" y="65" font-family="System-Regular" fill="white" font-size="30" font-weight="bold" text-anchor="middle">
+      ALTITUDE
+    </text>
+    <text id="altitude" x="165" y="115" font-family="System-Regular" fill="white" font-size="50" font-weight="bold" text-anchor="middle">
+      altitude
+    </text>
+</section>
 
-  <arc x="1" y="15" width="340" height="150" fill="white"
-    arc-width="5" start-angle="90" sweep-angle="90" />
-  <arc x="1" y="160" width="340" height="150" fill="white"
-    arc-width="5" start-angle="-90" sweep-angle="90" />
+
+
+
+  <path d="m 0 150 h 250 q 60 0 90 -50 v 70 h -250 q -60 0 -90 50 v -70 Z" fill="white" />
+
 
   <text id="distanceValue" x="50%" y="65%+15" font-family="System-Regular" fill="white" font-size="30" font-weight="bold" text-anchor="middle">
     DISTANCE TO LZ

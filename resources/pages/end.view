@@ -1,5 +1,7 @@
 <svg>
 
+  <image x="130" y="130" width="80" height="80" href="../icon.png" />
+
  <text x="50%" y="45%" font-family="System-Regular" fill="white" font-size="50" font-weight="bold" text-anchor="middle">
   EINDE
  </text>

@@ -1,3 +1,7 @@
 svg {
   viewport-fill: #02243F;
 }
+
+#safeColor {
+  fill: green;
+}
