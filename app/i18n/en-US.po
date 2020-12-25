@@ -1,2 +1,23 @@
 msgid "start"
-msgstr "Start"
+msgstr "START"
+
+msgid "stel_je_gps-coordinaten_in"
+msgstr "set your gps coordinates"
+
+msgid "EINDE"
+msgstr "DONE"
+
+msgid "je_bent_veilig_geland!"
+msgstr "You have landed safely!"
+
+msgid "CHECK_DE_STATISTIEKEN_OP_DE_FITBIT_APP"
+msgstr "CHECK THE STATISTICS ON THE FITBIT APP"
+
+msgid "ALTITUDE"
+msgstr "ALTITUDE"
+
+msgid "DISTANCE_TO_LZ"
+msgstr "DISTANCE TO LZ"
+
+msgid "VERTICAL_SPEED"
+msgstr "VERTICAL SPEED"
