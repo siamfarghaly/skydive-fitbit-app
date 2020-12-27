@@ -16,7 +16,7 @@
   "fitbit": {
     "appUUID": "93f2cf9b-cbe7-4671-9771-fbade41e203a",
     "appType": "app",
-    "appDisplayName": "Skydive Test",
+    "appDisplayName": "Skydive",
     "iconFile": "resources/icon.png",
     "wipeColor": "#ffffff",
     "requestedPermissions": ["access_location", "run_background", "access_exercise", "access_activity", "access_heart_rate"],
