@@ -8,16 +8,32 @@ import exercise from "exercise";
 
 var altitudeLabel;
 var distanceLabel;
+var distanceElem;
+var verSpeedElem;
 var verSpeedLabel;
 var verticalSpeed;
 var lzLong;
 var lzLat;
+var altitudeLZ;
 var currentLong;
 var currentLat;
-var lastAltitude;
+var altitude;
+var safeColor
+var watchID;
+
 
 // Create Barometer, 1 reading per second
 var bar = new Barometer({ frequency: 1 });
+
+// Update with each reading of barometer
+bar.onreading = () => {
+  verticalSpeed = speedFromAltitude(altitude,altitudeFromPressure(bar.pressure/100));
+  altitude = altitudeFromPressure(bar.pressure/100);
+  pickLayout(verticalSpeed,altitude);
+  altitudeLabel.text = altitude + " ft";
+  verSpeedLabel.text = verticalSpeed + " km/h";
+}
+
 
 
 export function destroy() {
@@ -30,22 +46,28 @@ export function destroy() {
   lzLat = null;
   currentLong = null;
   currentLat = null;
-  lastAltitude = null;
+  altitude = null;
+  safeColor = null;
+  altitudeLZ = null;
 }
 
 export function init() {
   console.log('init action page');
   altitudeLabel = document.getElementById('altitude');
   distanceLabel = document.getElementById('distanceLZ');
+  distanceElem = document.getElementById('distanceValue');
+  verSpeedElem = document.getElementById('speedValue');
   verSpeedLabel = document.getElementById('verSpeed');
+  safeColor = document.getElementById('safeColor');
 
   watchDistanceLZ();
-  startAltimeter();
-  exercise.start("golf", { gps: true });
-  setTimeout(function(){
-    exercise.stop();
-    switchPage('end', true);
-  },10000);
+  bar.start();
+  exercise.start("golf", { gps: true, disableTouch: true });
+  // setTimeout(function(){
+  //   exercise.stop();
+  //   bar.stop();
+  //   switchPage('end', true);
+  // },10000);
 };
 
 
@@ -70,7 +92,7 @@ function watchDistanceLZ(){
 
 
   //watch current GPS coordinates + calculate distance LZ
-  var watchID = geolocation.watchPosition(watchLocation, locationError, {
+  watchID = geolocation.watchPosition(watchLocation, locationError, {
     timeout: 60 * 1000
   });
 
@@ -79,42 +101,56 @@ function watchDistanceLZ(){
       currentLong = position.coords.longitude;
       console.log("Current Latitude: " + position.coords.latitude,
                   "Current Longitude: " + position.coords.longitude);
-      distanceLabel.text = distance(currentLat,currentLong,lzLat,lzLong);
+      distanceLabel.text = distance(currentLat,currentLong,lzLat,lzLong) + " km";
   }
 }
 
 
-function startAltimeter(){
-  bar.start();
-  // Update the values with each reading
-  bar.onreading = () => {
-    verticalSpeed = speedFromAltitude(lastAltitude,altitudeFromPressure(bar.pressure));
-    lastAltitude = altitudeFromPressure(bar.pressure);
-    pickLayout(verticalSpeed);
-    altitudeLabel.text = lastAltitude;
-    verSpeedLabel.text = verticalSpeed
-  }
-}
 
-function pickLayout(fallingSpeed){
+
+function pickLayout(fallingSpeed,height){
   if (fallingSpeed >= 80*0.911344415){
+    verSpeedElem.style.display = "inline";
     verSpeedLabel.style.display = "inline";
+    safeColor.style.display = "inline";
     distanceLabel.style.display = "none";
+    distanceElem.style.display = "none";
+    if(height>5000){
+      safeColor.style.fill="green";
+    } else if (height>3500) {
+      safeColor.style.fill="orange";
+    } else {
+      safeColor.style.fill="red";
+    };
   } else{
+    verSpeedElem.style.display = "none";
     verSpeedLabel.style.display = "none";
+    safeColor.style.display = "none";
     distanceLabel.style.display = "inline";
+    distanceElem.style.display = "inline";
+    if ((fallingSpeed>0)&&(height<50)){
+      endSkydive();
+    }
   }
 }
 
-//falling speed in ft/s
-function speedFromAltitude(current, previous){
-  return (current-previous)*3.6;
+function endSkydive(){
+  exercise.stop();
+  bar.stop();
+  geolocation.clearWatch(watchID);
+  switchPage('end', true);
 }
 
-// Converts pressure in millibars to altitude in ft
+
+//falling speed in km/h
+function speedFromAltitude(current, previous){
+  return (current-previous)*1.09728;
+}
+
+// Converts pressure in millibars to altitude in feet
 // https://en.wikipedia.org/wiki/Pressure_altitude
 function altitudeFromPressure(pressure) {
-  return Math.round((1 - ((pressure/100)/1013.25)**0.190284)*145366.45);
+  return Math.round((1 - (pressure/1013.25)**0.190284)*145366.45);
 }
 
 

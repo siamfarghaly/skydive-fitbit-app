@@ -1,39 +1,37 @@
 <svg>
 
-<section height="120" width="250">
-    <rect id="safeColor"  x="0" y="0" width="340" height="170"></rect>
-    <text x="165" y="65" font-family="System-Regular" fill="white" font-size="30" font-weight="bold" text-anchor="middle">
-      _ALTITUDE
+  <section height="120" width="250">
+      <rect id="safeColor"  x="0" y="0" width="340" height="170"></rect>
+      <text x="165" y="65" font-family="System-Regular" fill="white" font-size="30" font-weight="bold" text-anchor="middle">
+        _ALTITUDE
+      </text>
+      <text id="altitude" x="165" y="115" font-family="System-Regular" fill="white" font-size="50" font-weight="bold" text-anchor="middle">
+        altitude
+      </text>
+  </section>
+
+  <section>
+    <rect x="0" y="150" width="400" height="21" fill="white" />
+
+    <arc x="85" y="20" width="270" height="150" fill="white" arc-width="20" start-angle="90" sweep-angle="90" />
+    <arc x="-46" y="150" width="295" height="270" fill="white" arc-width="21" start-angle="0" sweep-angle="-90" />
+
+    <rect x='98%-15' y='40%' width='50' height='30' fill='white' />
+    <rect x='-20' y='48%' width='50' height='30' fill='white' />
+  </section>
+
+    <text id="distanceValue" x="50%" y="65%+15" font-family="System-Regular" fill="white" font-size="30" font-weight="bold" text-anchor="middle">
+      _DISTANCE_TO_LZ
     </text>
-    <text id="altitude" x="165" y="115" font-family="System-Regular" fill="white" font-size="50" font-weight="bold" text-anchor="middle">
-      altitude
+    <text id="distanceLZ" x="50%" y="80%+25" font-family="System-Regular" fill="white" font-size="50" font-weight="bold" text-anchor="middle">
+    distance to LZ
     </text>
-</section>
 
-//<path d="m 0 150 h 250 q 60 0 90 -50 v 70 h -250 q -60 0 -90 50 v -70 Z" fill="white" />
+    <text id="speedValue" x="50%" y="65%+15" font-family="System-Regular" fill="white" font-size="30" font-weight="bold" text-anchor="middle">
+      _VERTICAL_SPEED
+    </text>
+    <text id="verSpeed" x="50%" y="80%+25" font-family="System-Regular" fill="white" font-size="50" font-weight="bold" text-anchor="middle">
+    verticalSpeed
+    </text>
 
-<section>
-  <rect x="0" y="150" width="400" height="21" fill="white" />
-
-  <arc x="85" y="20" width="270" height="150" fill="white" arc-width="20" start-angle="90" sweep-angle="90" />
-  <arc x="-46" y="150" width="295" height="270" fill="white" arc-width="21" start-angle="0" sweep-angle="-90" />
-
-  <rect x='98%-15' y='40%' width='50' height='30' fill='white' />
-  <rect x='-20' y='48%' width='50' height='30' fill='white' />
-</section>
-
-  <text id="distanceValue" x="50%" y="65%+15" font-family="System-Regular" fill="white" font-size="30" font-weight="bold" text-anchor="middle">
-    _DISTANCE_TO_LZ
-  </text>
-  <text id="distanceLZ" x="50%" y="80%+25" font-family="System-Regular" fill="white" font-size="50" font-weight="bold" text-anchor="middle">
-  distance to LZ
-  </text>
-
-  <text id="speedValue" x="50%" y="65%+15" font-family="System-Regular" fill="white" font-size="30" font-weight="bold" text-anchor="middle">
-    _VERTICAL_SPEED
-  </text>
-  <text id="verSpeed" x="50%" y="80%+25" font-family="System-Regular" fill="white" font-size="50" font-weight="bold" text-anchor="middle">
-  verticalSpeed
-  </text>
-
-  </svg>
+</svg>

@@ -18,3 +18,6 @@ msgstr "L'ALTITUDE"
 
 msgid "VERTICAL_SPEED"
 msgstr "VITESSE VERTICALE"
+
+msgid "DISTANCE_TO_LZ"
+msgstr "DISTANCE A LZ"
