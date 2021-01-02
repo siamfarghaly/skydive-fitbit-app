@@ -25,7 +25,7 @@ var watchID;
 // Create Barometer, 1 reading per second
 var bar = new Barometer({ frequency: 1 });
 
-// Update with each reading of barometer
+// Update view with each reading of barometer
 bar.onreading = () => {
   verticalSpeed = speedFromAltitude(altitude,altitudeFromPressure(bar.pressure/100));
   altitude = altitudeFromPressure(bar.pressure/100);
@@ -33,7 +33,6 @@ bar.onreading = () => {
   altitudeLabel.text = altitude + " ft";
   verSpeedLabel.text = verticalSpeed + " km/h";
 }
-
 
 
 export function destroy() {
@@ -63,11 +62,6 @@ export function init() {
   watchDistanceLZ();
   bar.start();
   exercise.start("golf", { gps: true, disableTouch: true });
-  // setTimeout(function(){
-  //   exercise.stop();
-  //   bar.stop();
-  //   switchPage('end', true);
-  // },10000);
 };
 
 
@@ -107,7 +101,7 @@ function watchDistanceLZ(){
 
 
 
-
+//update view based on vertical speed and altitude
 function pickLayout(fallingSpeed,height){
   if (fallingSpeed >= 80*0.911344415){
     verSpeedElem.style.display = "inline";
@@ -128,12 +122,13 @@ function pickLayout(fallingSpeed,height){
     safeColor.style.display = "none";
     distanceLabel.style.display = "inline";
     distanceElem.style.display = "inline";
-    if ((fallingSpeed>0)&&(height<50)){
+    if ((fallingSpeed>0)&&(height<150)){
       endSkydive();
     }
   }
 }
 
+//stop all monitors and close page
 function endSkydive(){
   exercise.stop();
   bar.stop();
@@ -142,20 +137,21 @@ function endSkydive(){
 }
 
 
-//falling speed in km/h
+//calculate falling speed in km/h
 function speedFromAltitude(current, previous){
   return (current-previous)*1.09728;
 }
 
 // Converts pressure in millibars to altitude in feet
 // https://en.wikipedia.org/wiki/Pressure_altitude
+// from https://github.com/Fitbit/sdk-altimeter
 function altitudeFromPressure(pressure) {
   return Math.round((1 - (pressure/1013.25)**0.190284)*145366.45);
 }
 
 
-//calculates distance between 2 coordinates in km with 2 decimals
-//https://www.geodatasource.com/developers/javascript
+// calculates distance between 2 coordinates in km with 2 decimals
+// from https://www.geodatasource.com/developers/javascript
 function distance(lat1, lon1, lat2, lon2) {
   if ((lat1 == lat2) && (lon1 == lon2)) {
     return 0;
